@@ -73,10 +73,9 @@
             กำลังเชื่อมต่อข้อมูลกรุณารอสักครู่
         </div>
 
-        <div id="data" class="is-hidden">
+        <div id="data" class="is-hidden" style="cursor:pointer" onclick='window.open("https://thaipoliceonline.com/login", "_blank");'>
             <div id="container"></div>
             <div class="card mt-4">
-                <a href="https://thaipoliceonline.com/login" target="_blank">
                     <header class="card-header mb-2">
                         <div class="card-header-title">
                             <img src="_media/police.png" width="80" alt="logo" class="mr-2">
@@ -91,7 +90,6 @@
                             </span>
                         </div>
                     </header>
-                </a>
             </div>
             <div id="czpAds" class="card mt-4 is-hidden">
                 <a href="https://cportal.page.link/landing" target="_blank">
@@ -204,6 +202,7 @@
             $("#loading").addClass("is-hidden");
             $("#data").removeClass("is-hidden");
         }, 400);
+        
     </script>
 
 </body>
