@@ -15,7 +15,7 @@
 
     <title>Document</title>
     <style>
-        body {
+        html {
             background-color: #00756E;
         }
 
@@ -49,136 +49,155 @@
 </head>
 
 <body class="section">
-    <div  class="container">
+
+    <div class="container">
         <h3 class="title is-4 has-text-white">ช่องทางโทรแจ้งอายัดบัญชี</h3>
-        <h6 class="subtitle is-6 has-text-white	">หากถูกมิจฉาชีพหลอกโอนเงิน ท่านสามารถเลือกธนาคารของท่าน เพื่อโทรอายัดเงินได้ทันที</h6>
+        <h6 class="subtitle is-6 has-text-white	">หากถูกมิจฉาชีพหลอกโอนเงิน ท่านสามารถเลือกธนาคารของท่าน
+            เพื่อโทรอายัดเงินได้ทันที</h6>
 
+
+        <div id="loading" class="has-text-centered has-text-white">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="screen-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div><br>
+            กำลังเชื่อมต่อข้อมูลกรุณารอสักครู่
+        </div>
+
+        <div id="data" class="is-hidden">
+            <div class="card mt-4">
+                <a href="https://thaipoliceonline.com/login" target="_blank">
+                    <header class="card-header mb-2">
+                        <div class="card-header-title">
+                            <img src="_media/police.png" width="80" alt="logo" class="mr-2">
+                            <div class="is-pulled-left">
+                                <div class="title is-size-5">แจ้งความออนไลน์</div>
+                                <div class="subtitle is-size-6">แจ้งความออนไลน์สำหรับคดีอาชญากรรมทางเทคโนโลยี</div>
+                            </div>
+                        </div>
+                        <div class="card-header-icon pr-5">
+                            <span class="icon has-text-grey">
+                                <span class="material-icons-round is-size-3">arrow_forward_ios</span>
+                            </span>
+                        </div>
+                    </header>
+                </a>
+            </div>
+            <div id="container"></div>
+            <div id="czpAds" class="card mt-4 is-hidden">
+                <a href="https://cportal.page.link/landing" target="_blank">
+                    <header class="card-header mb-2">
+                        <div class="card-header-title">
+                            <img src="_media/czp.png" width="80" alt="logo" class="mr-2">
+                            <div class="is-pulled-left">
+                                <div class="title is-size-5">แอปทางรัฐ</div>
+                                <div class="subtitle is-size-6">แจ้งเรื่องร้องเรียน ตรวจสอบสิทธิสุขภาพ ดูข้อมูลส่วนตัว
+                                    เช็คเครดิตบูโรฟรีได้ที่แอปทางรัฐ</div>
+                            </div>
+                        </div>
+                        <div class="card-header-icon pr-5">
+                            <span class="icon has-text-grey">
+                                <span class="material-icons-round is-size-3">arrow_forward_ios</span>
+                            </span>
+                        </div>
+                    </header>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js"
+        integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
+    <script src="https://czp.dga.or.th/cportal/sdk/iu/v3/sdk.js"></script>
+
+    <template id="template">
         <div class="card mt-4">
-            <a href="https://thaipoliceonline.com/login" target="_blank">
-            <header class="card-header mb-2">
-                <div class="card-header-title">
-                    <img src="_media/police.png" width="80" alt="logo" class="mr-2">
-                    <div class="is-pulled-left">
-                        <div class="title is-size-5">แจ้งความออนไลน์</div>
-                        <div class="subtitle is-size-6">แจ้งความออนไลน์สำหรับคดีอาชญากรรมทางเทคโนโลยี</div>
+            <a href="tel:{{tel}}">
+                <header class="card-header mb-2">
+                    <div class="card-header-title">
+                        <img src="_media/{{logo}}.png" width="80" alt="logo" class="mr-2">
+                        <div class="is-pulled-left">
+                            <div class="title is-size-5">{{name}}</div>
+                            <div class="subtitle is-size-6">{{call}} {{ext}}</div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-header-icon pr-5">
-                    <span class="icon has-text-grey">
-                        <span class="material-icons-round is-size-3">arrow_forward_ios</span>
-                    </span>
-                </div>
-            </header>
+                    <div class="card-header-icon pr-5">
+                        <span class="icon has-text-grey">
+                            <span class="material-icons-round is-size-3">arrow_forward_ios</span>
+                        </span>
+                    </div>
+                </header>
             </a>
         </div>
-<div id="container"></div>
+    </template>
+    <script type="text/javascript">
+        const json = [
+            { name: "สายด่วนตำรวจไซเบอร์", call: "1441", ext: "", logo: "police" },
 
+            { name: "ธ.กสิกรไทย", call: "02-888-8888", ext: "001", logo: "kbank" },
+            { name: "ธ.กรุงไทย", call: "02-111-1111", ext: "108", logo: "ktb" },
+            { name: "ธ.กรุงศรีอยุธยา", call: "1572", ext: "5", logo: "bay" },
+            { name: "ธ.กรุงเทพ", call: "02-645-5555", ext: "3", logo: "bbl" },
 
+            { name: "ธ.ไทยพาณิชย์", call: "02-777-7575", ext: "", logo: "scb" },
+            { name: "ธ.ทหารไทยธนชาต", call: "1428", ext: "03", logo: "ttb" },
+            { name: "ธ.ออมสิน", call: "1115", ext: "6", logo: "gsb" },
+            { name: "ธ.ซีไอเอ็มบีไทย", call: "02-626-7777", ext: "00", logo: "cimb" },
 
-        <div id="czpAds" class="card mt-4 is-hidden">
-            <a href="https://cportal.page.link/landing" target="_blank">
-            <header class="card-header mb-2">
-                <div class="card-header-title">
-                    <img src="_media/czp.png" width="80" alt="logo" class="mr-2">
-                    <div class="is-pulled-left">
-                        <div class="title is-size-5">แอปทางรัฐ</div>
-                        <div class="subtitle is-size-6">แจ้งเรื่องร้องเรียน ตรวจสอบสิทธิสุขภาพ ดูข้อมูลส่วนตัว เช็คเครดิตบูโรฟรีได้ที่แอปทางรัฐ</div>
-                    </div>
-                </div>
-                <div class="card-header-icon pr-5">
-                    <span class="icon has-text-grey">
-                        <span class="material-icons-round is-size-3">arrow_forward_ios</span>
-                    </span>
-                </div>
-            </header>
-            </a>
-        </div>
+            { name: "ธ.ไทยเครดิตเพื่อรายย่อย", call: "02-697-5454", ext: "", logo: "tcrb" },
+            { name: "ธ.แลนด์ แอนด์ เฮ้าส์", call: "02-359-0000", ext: "8", logo: "lhb" },
+            { name: "ธ.อาคารสงเคราะห์", call: "02-645-9000", ext: "33", logo: "ghb" },
 
-   
-    </div>
-  
+            { name: "ธ.เกียรตินาคินภัทร", call: "02-615-5555", ext: "6", logo: "kk" },
+            { name: "ธ.ธกส", call: "02-555-0555", ext: "3", logo: "baac" },
 
-    <script src="https://code.jquery.com/jquery-3.6.4.slim.min.js" integrity="sha256-a2yjHM4jnF9f54xUQakjZGaqYs/V1CYvWpoqZzC2/Bw=" crossorigin="anonymous"></script>
- <script src="https://czp.dga.or.th/cportal/sdk/iu/v3/sdk.js"></script>
-
-<template id="template">
-    <div class="card mt-4">
-        <a href="tel:{{tel}}">
-        <header class="card-header mb-2">
-            <div class="card-header-title">
-                <img src="_media/{{logo}}.png" width="80" alt="logo" class="mr-2">
-                <div class="is-pulled-left">
-                    <div class="title is-size-5">{{name}}</div>
-                    <div class="subtitle is-size-6">{{call}} {{ext}}</div>
-                </div>
-            </div>
-            <div class="card-header-icon pr-5">
-                <span class="icon has-text-grey">
-                    <span class="material-icons-round is-size-3">arrow_forward_ios</span>
-                </span>
-            </div>
-        </header>
-        </a>
-    </div>
-</template>
-<script type="text/javascript">
-const json = [
-{name:"สายด่วนตำรวจไซเบอร์",call:"1441",ext:"",logo:"police"},
-
-{name:"ธ.กสิกรไทย",call:"02-888-8888",ext:"001",logo:"kbank"},
-{name:"ธ.กรุงไทย",call:"02-111-1111",ext:"108",logo:"ktb"},
-{name:"ธ.กรุงศรีอยุธยา",call:"1572",ext:"5",logo:"bay"},
-{name:"ธ.กรุงเทพ",call:"02-645-5555",ext:"3",logo:"bbl"},
-
-{name:"ธ.ไทยพาณิชย์",call:"02-777-7575",ext:"",logo:"scb"},
-{name:"ธ.ทหารไทยธนชาต",call:"1428",ext:"03",logo:"ttb"},
-{name:"ธ.ออมสิน",call:"1115",ext:"6",logo:"gsb"},
-{name:"ธ.ซีไอเอ็มบีไทย",call:"02-626-7777",ext:"00",logo:"cimb"},
-
-{name:"ธ.ไทยเครดิตเพื่อรายย่อย",call:"02-697-5454",ext:"",logo:"tcrb"},
-{name:"ธ.แลนด์ แอนด์ เฮ้าส์",call:"02-359-0000",ext:"8",logo:"lhb"},
-{name:"ธ.อาคารสงเคราะห์",call:"02-645-9000",ext:"33",logo:"ghb"},
-
-{name:"ธ.เกียรตินาคินภัทร",call:"02-615-5555",ext:"6",logo:"kk"},
-{name:"ธ.ธกส",call:"02-555-0555",ext:"3",logo:"baac"},
-
-{name:"ธ.ซิตี้แบงก์",call:"02-344-9555",ext:"001",logo:"citi"},
-{name:"ธ.ยูโอบี",call:"02-344-9555",ext:"001",logo:"uob"},
-{name:"ธ.ทิสโก้",call:"02-633-6000",ext:"*7",logo:"tisco"},
+            { name: "ธ.ซิตี้แบงก์", call: "02-344-9555", ext: "001", logo: "citi" },
+            { name: "ธ.ยูโอบี", call: "02-344-9555", ext: "001", logo: "uob" },
+            { name: "ธ.ทิสโก้", call: "02-633-6000", ext: "*7", logo: "tisco" },
 
 
 
 
 
-]
+        ]
 
 
-const template = $("#template").html();
-$.each(json, function(i, item) {
-    let render = template.replace("{{name}}",item.name).replace("{{call}}",item.call).replace("{{logo}}",item.logo);
-    
-    let tel = item.call.replaceAll("-","");
-    if(item.ext !== ""){
-        render = render.replace("{{ext}}","ต่อ "+item.ext);
-        tel = tel+","+item.ext;
-    }
-    else{
-        render = render.replace("{{ext}}","");
-    }
+        const template = $("#template").html();
+        $.each(json, function (i, item) {
+            let render = template.replace("{{name}}", item.name).replace("{{call}}", item.call).replace("{{logo}}", item.logo);
 
-    render = render.replace("{{tel}}",tel);
+            let tel = item.call.replaceAll("-", "");
+            if (item.ext !== "") {
+                render = render.replace("{{ext}}", "ต่อ " + item.ext);
+                tel = tel + "," + item.ext;
+            }
+            else {
+                render = render.replace("{{ext}}", "");
+            }
 
-
-    $("#container").append(render);
-  });
-
-  const isczp = window.czpSdk.isCitizenPortal()
-  if(!isczp){
-    $("#czpAds").removeClass("is-hidden");
-  }
+            render = render.replace("{{tel}}", tel);
 
 
-</script>
+            $("#container").append(render);
+        });
+
+        const isczp = window.czpSdk.isCitizenPortal()
+        if (!isczp) {
+            $("#czpAds").removeClass("is-hidden");
+        }
+        setTimeout(() => {
+            $("#loading").addClass("is-hidden");
+            $("#data").removeClass("is-hidden");
+        }, 700);
+    </script>
 
 </body>
 
