@@ -74,9 +74,11 @@
         </div>
 
 
-        <div id="data" class="is-hidden">
-            <div id="container"></div>
-            <div class="card mt-4">
+        <div id="data" class=" is-hidden">
+            <div id="container" class="columns is-multiline"></div>
+            
+            <div class="columns is-multiline">
+            <div class="card mt-4 column mx-2">
                 <header class="card-header mb-2">
                     <div class="card-header-title">
                         <img src="_media/police.png" width="80" alt="logo" class="mr-2">
@@ -94,7 +96,7 @@
                 </footer>
             </div>
 
-            <div id="czpAds" class="card mt-4 is-hidden">
+            <div id="czpAds" class="card mt-4 mx-2 column is-hidden">
                 <header class="card-header mb-2">
                     <div class="card-header-title">
                         <img src="_media/czp.png" width="80" alt="logo" class="mr-2">
@@ -112,8 +114,8 @@
                     </div>
                 </footer>
             </div>
-
-            <div class="has-text-centered has-text-white mt-4">
+        </div>
+            <div class="has-text-centered has-text-white mt-4 ">
                 <small>ข้อมูลอ้างอิง <a class="has-text-white"
                         href="https://www.facebook.com/photo/?fbid=540772968195670">ธนาคารแห่งประเทศไทย - Bank of
                         Thailand </a></small>
@@ -128,7 +130,7 @@
     <script src="https://czp.dga.or.th/cportal/sdk/iu/v3/sdk.js"></script>
 
     <template id="template">
-        <div class="card mt-4">
+        <div class="card mt-4 mx-2 column">
             <header class="card-header mb-2">
                 <div class="card-header-title">
                     <img src="_media/{{logo}}.png" width="80" alt="logo" class="mr-2">
@@ -140,10 +142,10 @@
             </header>
             <footer class="card-footer">
                 <div class="card-footer-item ">
-                    <a class="button is-primary" href="tel:{{tel}}">โทรออก</a>
+                    <a class="button is-primary is-fullwidth" href="tel:{{tel}}">โทรออก</a>
                 </div>
                 <div class="card-footer-item ">
-                    <a class="button is-primary" href="tel:{{tel-ext}}">โทรและกดเบอร์ต่อ</a>
+                    <a class="button is-primary is-fullwidth" href="tel:{{tel-ext}}">โทรและกดเบอร์ต่อ</a>
                 </div>
             </footer>
 
